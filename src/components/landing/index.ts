@@ -1,0 +1,10 @@
+export { Header } from "./Header";
+export { Hero } from "./Hero";
+export { Stats } from "./Stats";
+export { Services } from "./Services";
+export { Technology } from "./Technology";
+export { Specialist } from "./Specialist";
+export { Appointment } from "./Appointment";
+export { Testimonials } from "./Testimonials";
+export { CTA } from "./CTA";
+export { Footer } from "./Footer";
