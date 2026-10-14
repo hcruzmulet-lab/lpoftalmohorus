@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import {
   btn,
@@ -9,6 +9,8 @@ import {
   SELECT_SERVICE_EVENT,
   type ServiceId,
 } from "./site";
+import { buildWhatsAppMessage, readUtm, validateLead, whatsappUrl } from "@/lib/leads";
+import { submitLead } from "@/lib/submit-lead";
 
 type FormState = {
   name: string;
@@ -39,7 +41,10 @@ export function Appointment() {
     date: "",
     service: "",
   });
-  const [showErrors, setShowErrors] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sending, setSending] = useState(false);
+  // Guardia síncrona: el estado no se actualiza entre dos clics seguidos.
+  const submitting = useRef(false);
 
   useEffect(() => {
     const onSelect = (e: Event) => {
@@ -54,29 +59,37 @@ export function Appointment() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const serviceName = services.find((s) => s.id === form.service)?.name;
+  const dateLine = form.date ? `Fecha preferida: ${formatDate(form.date)}` : undefined;
+  const message = buildWhatsAppMessage(
+    { campaign: "sitio", name: form.name, phone: form.phone, email: form.email, interest: form.service },
+    dateLine,
+  );
 
-  const message = useMemo(() => {
-    const lines = [
-      `Hola, soy ${form.name.trim() || "[tu nombre]"}. Quisiera agendar una cita`,
-      serviceName ? `para ${serviceName}` : "de valoración",
-      form.date ? `el ${formatDate(form.date)}.` : "en la fecha más próxima disponible.",
-    ];
-    const contactLine = [form.phone.trim(), form.email.trim()].filter(Boolean).join(" · ");
-    return `${lines.join(" ")}${contactLine ? `\nMi contacto: ${contactLine}` : ""}`;
-  }, [form, serviceName]);
-
-  const nameMissing = form.name.trim() === "";
-  const phoneMissing = form.phone.trim() === "";
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (nameMissing || phoneMissing) {
-      setShowErrors(true);
+    if (submitting.current) return;
+    const result = validateLead({
+      campaign: "sitio",
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      interest: form.service,
+      page: window.location.pathname,
+      referrer: document.referrer,
+      utm: readUtm(window.location.search),
+    });
+    if (!result.ok) {
+      setErrors(result.errors);
       return;
     }
-    const url = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    setErrors({});
+    submitting.current = true;
+    const win = window.open(whatsappUrl(message), "_blank");
+    if (win) win.opener = null;
+    setSending(true);
+    await submitLead(result.lead);
+    setSending(false);
+    submitting.current = false;
   };
 
   const today = new Date().toISOString().split("T")[0];
@@ -109,13 +122,13 @@ export function Appointment() {
                   placeholder="Ej. María García"
                   value={form.name}
                   onChange={update("name")}
-                  aria-invalid={showErrors && nameMissing}
-                  aria-describedby={showErrors && nameMissing ? "name-error" : undefined}
+                  aria-invalid={errors.name ? true : undefined}
+                  aria-describedby={errors.name ? "name-error" : undefined}
                   className={fieldClass}
                 />
-                {showErrors && nameMissing && (
+                {errors.name && (
                   <p id="name-error" className="mt-1.5 text-sm text-destructive">
-                    Escribe tu nombre para saber a quién atender.
+                    {errors.name}
                   </p>
                 )}
               </div>
@@ -131,13 +144,13 @@ export function Appointment() {
                   placeholder="+593 99 999 9999"
                   value={form.phone}
                   onChange={update("phone")}
-                  aria-invalid={showErrors && phoneMissing}
-                  aria-describedby={showErrors && phoneMissing ? "phone-error" : undefined}
+                  aria-invalid={errors.phone ? true : undefined}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                   className={fieldClass}
                 />
-                {showErrors && phoneMissing && (
+                {errors.phone && (
                   <p id="phone-error" className="mt-1.5 text-sm text-destructive">
-                    Necesitamos un teléfono para confirmar tu cita.
+                    {errors.phone}
                   </p>
                 )}
               </div>
@@ -153,8 +166,15 @@ export function Appointment() {
                   placeholder="tu@email.com"
                   value={form.email}
                   onChange={update("email")}
+                  aria-invalid={errors.email ? true : undefined}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                   className={fieldClass}
                 />
+                {errors.email && (
+                  <p id="email-error" className="mt-1.5 text-sm text-destructive">
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -203,9 +223,9 @@ export function Appointment() {
               </p>
             </div>
 
-            <button type="submit" className={`${btn.primary} mt-6 h-14 w-full text-base`}>
+            <button type="submit" disabled={sending} className={`${btn.primary} mt-6 h-14 w-full text-base disabled:opacity-70`}>
               <Send className="size-[18px]" aria-hidden="true" />
-              Enviar por WhatsApp
+              {sending ? "Enviando…" : "Enviar por WhatsApp"}
             </button>
             <p className="mt-4 text-center text-[13px] text-ink-soft">
               Tus datos solo se usan para coordinar tu cita.
