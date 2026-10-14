@@ -176,7 +176,7 @@ export function LeadForm({
       </div>
 
       <div className="mt-6 rounded-xl bg-horus-mist p-4">
-        <p className="text-[13px] font-semibold text-ink-soft">Así llegará tu mensaje</p>
+        <p className="text-sm font-semibold text-ink-soft">Así llegará tu mensaje</p>
         <p aria-live="polite" className="mt-1.5 whitespace-pre-line text-[15px] leading-relaxed text-ink">
           {preview}
         </p>
@@ -186,7 +186,7 @@ export function LeadForm({
         <MessageCircle className="size-[18px]" aria-hidden="true" />
         {status === "sending" ? "Enviando…" : submitLabel}
       </button>
-      <p className="mt-4 text-center text-[13px] text-ink-soft">
+      <p className="mt-4 text-center text-sm text-ink-soft">
         Tus datos solo se usan para coordinar tu atención.
       </p>
     </form>

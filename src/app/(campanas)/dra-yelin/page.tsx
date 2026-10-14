@@ -75,7 +75,7 @@ export default function DraYelinPage() {
           <div>
             <h2 className="font-display text-3xl font-bold text-ink md:text-[2.5rem]">Su trayectoria</h2>
             <blockquote className="mt-6 rounded-2xl bg-horus-mist p-6">
-              <p className="text-[17px] leading-relaxed text-ink">
+              <p className="text-lg leading-relaxed text-ink">
                 &ldquo;Mi misión es devolver la claridad visual a cada paciente,
                 utilizando la mejor tecnología con un toque humano.&rdquo;
               </p>

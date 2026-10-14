@@ -131,7 +131,7 @@ export default function CirugiasPage() {
           <div className="grid gap-5 md:grid-cols-2">
             {proof.map((t) => (
               <figure key={t.name} className="rounded-2xl bg-horus-mist p-7">
-                <blockquote className="text-[16px] leading-relaxed text-ink">&ldquo;{t.content}&rdquo;</blockquote>
+                <blockquote className="text-[15px] leading-relaxed text-ink">&ldquo;{t.content}&rdquo;</blockquote>
                 <figcaption className="mt-5">
                   <span className="block font-semibold text-ink">{t.name}</span>
                   <span className="block text-sm text-ink-soft">{t.role}</span>
