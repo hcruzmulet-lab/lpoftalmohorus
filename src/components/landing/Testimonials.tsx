@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 
-const testimonials = [
+export const testimonials = [
   {
     name: "María García",
     role: "Paciente de cirugía láser",

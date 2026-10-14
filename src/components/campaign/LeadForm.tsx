@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { MessageCircle, CheckCircle2 } from "lucide-react";
 import { campaigns, type CampaignId } from "@/lib/campaigns";
 import {
@@ -43,6 +43,8 @@ export function LeadForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");
   const [waLink, setWaLink] = useState("");
+  // Guardia síncrona: el estado no se actualiza entre dos clics seguidos.
+  const submitting = useRef(false);
 
   useEffect(() => {
     const onSelect = (e: Event) => {
@@ -64,7 +66,7 @@ export function LeadForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (status === "sending") return;
+    if (submitting.current) return;
 
     const result = validateLead({
       campaign,
@@ -78,6 +80,7 @@ export function LeadForm({
       return;
     }
     setErrors({});
+    submitting.current = true;
 
     const link = whatsappUrl(buildWhatsAppMessage(result.lead));
     setWaLink(link);
