@@ -2,7 +2,7 @@ import Image from "next/image";
 import { GraduationCap, Award, Globe, Heart, ArrowRight } from "lucide-react";
 import { btn } from "./site";
 
-const credentials = [
+export const credentials = [
   {
     icon: GraduationCap,
     title: "Formación de excelencia",
