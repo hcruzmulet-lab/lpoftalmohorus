@@ -1,119 +1,163 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Eye } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, Phone, Mail, Clock } from "lucide-react";
+import { Logo } from "./Logo";
+import { btn, contact } from "./site";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Inicio", href: "#inicio" },
   { name: "Servicios", href: "#servicios" },
-  { name: "Tecnología", href: "#tecnologia" },
   { name: "Especialista", href: "#especialista" },
+  { name: "Tecnología", href: "#tecnologia" },
   { name: "Testimonios", href: "#testimonios" },
+  { name: "Contacto", href: "#citas" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [active, setActive] = useState("#inicio");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+      // Sección activa: la última cuyo inicio ya pasó bajo la barra
+      let current = navLinks[0].href;
+      for (const link of navLinks) {
+        const el = document.querySelector(link.href);
+        if (el && el.getBoundingClientRect().top <= 120) current = link.href;
+      }
+      setActive(current);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 pt-4">
-      <div
-        className={`
-          mx-auto max-w-6xl
-          bg-white/40 backdrop-blur-2xl backdrop-saturate-150
-          border border-white/50
-          rounded-2xl
-          shadow-[0_8px_32px_rgba(124,58,237,0.08)]
-          transition-all duration-300
-          ${isScrolled ? "bg-white/60 shadow-[0_8px_32px_rgba(124,58,237,0.12)]" : ""}
-        `}
-      >
-        <div className="px-6">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <a href="#inicio" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#d4a853] flex items-center justify-center shadow-md">
-                <Eye className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-base text-[#7c3aed] leading-tight">
-                  OFTALMO HORUS
-                </span>
-                <span className="text-[10px] text-muted-foreground">Center</span>
-              </div>
+    <>
+      {/* Barra superior de información */}
+      <div className="hidden bg-horus-mist text-[13px] text-ink-soft md:block">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6">
+          <div className="flex items-center gap-5">
+            <span>Tu visión, nuestra prioridad</span>
+            <span aria-hidden="true">·</span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="size-3.5 text-horus" aria-hidden="true" />
+              Emergencias oculares 24/7
+            </span>
+          </div>
+          <div className="flex items-center gap-5">
+            <a
+              href={contact.phoneHref}
+              className="flex items-center gap-1.5 transition-colors hover:text-horus"
+            >
+              <Phone className="size-3.5 text-horus" aria-hidden="true" />
+              {contact.phoneDisplay}
             </a>
+            <a
+              href={`mailto:${contact.email}`}
+              className="flex items-center gap-1.5 transition-colors hover:text-horus"
+            >
+              <Mail className="size-3.5 text-horus" aria-hidden="true" />
+              {contact.email}
+            </a>
+          </div>
+        </div>
+      </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
+      <header
+        className={cn(
+          "sticky top-0 z-50 bg-white transition-shadow duration-300",
+          isScrolled && "shadow-[0_6px_24px_-12px_rgba(29,20,51,0.18)]"
+        )}
+      >
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-6 px-4 md:px-6">
+          <a href="#inicio" aria-label="OFTALMO HORUS Center, ir al inicio">
+            <Logo />
+          </a>
+
+          <nav aria-label="Principal" className="hidden items-center gap-1 lg:flex">
+            {navLinks.map((link) => {
+              const isActive = active === link.href;
+              return (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/70 hover:text-[#7c3aed] transition-colors"
+                  aria-current={isActive ? "true" : undefined}
+                  className={cn(
+                    "relative px-3 py-2 text-[15px] font-medium transition-colors",
+                    isActive ? "text-horus" : "text-ink hover:text-horus"
+                  )}
                 >
                   {link.name}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-x-3 -bottom-0.5 h-0.5 origin-left rounded-full bg-horus transition-transform duration-300",
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    )}
+                  />
                 </a>
-              ))}
-            </nav>
+              );
+            })}
+          </nav>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
-              <Button
-                className="bg-[#7c3aed] hover:bg-[#7c3aed]/90 text-white px-5 rounded-xl shadow-md shadow-[#7c3aed]/25"
-                asChild
-              >
-                <a href="#citas">Agendar Cita</a>
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 rounded-xl hover:bg-white/50 transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
+          <div className="hidden lg:block">
+            <a href="#citas" className={btn.small}>
+              Agendar cita
+            </a>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <nav className="md:hidden py-4 border-t border-white/30">
-              <div className="flex flex-col gap-3">
-                {navLinks.map((link) => (
+          <button
+            className="grid size-11 place-items-center rounded-[10px] text-ink transition-colors hover:bg-horus-mist lg:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={isMenuOpen}
+            aria-controls="menu-movil"
+          >
+            {isMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
+
+        {isMenuOpen && (
+          <nav
+            id="menu-movil"
+            aria-label="Principal móvil"
+            className="bg-white px-4 pb-6 pt-2 lg:hidden"
+          >
+            <ul className="flex flex-col">
+              {navLinks.map((link) => (
+                <li key={link.name}>
                   <a
-                    key={link.name}
                     href={link.href}
-                    className="text-sm font-medium text-foreground/70 hover:text-[#7c3aed] transition-colors py-2"
+                    className="block py-3 text-base font-medium text-ink hover:text-horus"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
                   </a>
-                ))}
-                <Button
-                  className="bg-[#7c3aed] hover:bg-[#7c3aed]/90 text-white w-full mt-2 rounded-xl"
-                  asChild
-                >
-                  <a href="#citas">Agendar Cita</a>
-                </Button>
-              </div>
-            </nav>
-          )}
-        </div>
-      </div>
-    </header>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#citas"
+              className={cn(btn.primary, "mt-3 w-full")}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Agendar cita
+            </a>
+            <a
+              href={contact.phoneHref}
+              className="mt-4 flex items-center justify-center gap-2 text-sm text-ink-soft"
+            >
+              <Phone className="size-4 text-horus" />
+              Emergencias 24/7: {contact.phoneDisplay}
+            </a>
+          </nav>
+        )}
+      </header>
+    </>
   );
 }

@@ -1,8 +1,8 @@
 import {
   Header,
   Hero,
-  Stats,
   Services,
+  Highlights,
   Technology,
   Specialist,
   Appointment,
@@ -17,10 +17,10 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <Services />
-        <Technology />
+        <Highlights />
         <Specialist />
+        <Technology />
         <Testimonials />
         <Appointment />
         <CTA />

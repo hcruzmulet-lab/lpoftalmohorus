@@ -1,34 +1,24 @@
-"use client";
-
-import { Separator } from "@/components/ui/separator";
-import {
-  Eye,
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  Facebook,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Logo } from "./Logo";
+import { contact } from "./site";
 
 const footerLinks = {
   menu: [
     { name: "Inicio", href: "#inicio" },
     { name: "Servicios", href: "#servicios" },
-    { name: "Tecnología", href: "#tecnologia" },
     { name: "Especialista", href: "#especialista" },
+    { name: "Tecnología", href: "#tecnologia" },
+    { name: "Testimonios", href: "#testimonios" },
   ],
   servicios: [
     { name: "Cirugía de Cataratas", href: "#servicios" },
     { name: "Corrección Láser", href: "#servicios" },
-    { name: "Tratamiento Glaucoma", href: "#servicios" },
+    { name: "Tratamiento de Glaucoma", href: "#servicios" },
     { name: "Oftalmología Pediátrica", href: "#servicios" },
   ],
   legal: [
-    { name: "Términos y Condiciones", href: "#" },
-    { name: "Política de Privacidad", href: "#" },
-    { name: "Aviso Legal", href: "#" },
+    { name: "Términos y condiciones", href: "#" },
+    { name: "Política de privacidad", href: "#" },
   ],
 };
 
@@ -40,132 +30,96 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f172a] text-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand column */}
-          <div className="space-y-6">
-            <a href="#inicio" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#d4a853] flex items-center justify-center">
-                <Eye className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-lg leading-tight">
-                  OFTALMO HORUS
-                </span>
-                <span className="text-xs text-white/60">Center</span>
-              </div>
+    <footer className="bg-ink text-white">
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 md:px-6">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
+          <div>
+            <a href="#inicio" aria-label="OFTALMO HORUS Center, ir al inicio">
+              <Logo inverted />
             </a>
-            <p className="text-white/70 text-sm leading-relaxed">
-              Centro oftalmológico de excelencia dedicado a transformar vidas a
-              través de la mejor atención visual. Tu visión es nuestra misión.
+            <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-white/70">
+              Centro oftalmológico en Quito dedicado a transformar vidas a
+              través de la mejor atención visual.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social, index) => (
+            <div className="mt-6 flex gap-2">
+              {socialLinks.map((s) => (
                 <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#7c3aed] transition-colors"
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="grid size-10 place-items-center rounded-[10px] bg-white/[0.08] transition-colors hover:bg-horus"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <s.icon className="size-[18px]" aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Menu column */}
-          <div>
-            <h4 className="font-semibold mb-6">Menú</h4>
-            <ul className="space-y-3">
-              {footerLinks.menu.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-white/70 hover:text-[#d4a853] transition-colors text-sm"
-                  >
-                    {link.name}
+          <nav aria-label="Menú del pie">
+            <h3 className="font-display text-base font-semibold">Menú</h3>
+            <ul className="mt-5 space-y-3">
+              {footerLinks.menu.map((l) => (
+                <li key={l.name}>
+                  <a href={l.href} className="text-[15px] text-white/70 transition-colors hover:text-gold">
+                    {l.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Services column */}
-          <div>
-            <h4 className="font-semibold mb-6">Servicios</h4>
-            <ul className="space-y-3">
-              {footerLinks.servicios.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-white/70 hover:text-[#d4a853] transition-colors text-sm"
-                  >
-                    {link.name}
+          <nav aria-label="Servicios">
+            <h3 className="font-display text-base font-semibold">Servicios</h3>
+            <ul className="mt-5 space-y-3">
+              {footerLinks.servicios.map((l) => (
+                <li key={l.name}>
+                  <a href={l.href} className="text-[15px] text-white/70 transition-colors hover:text-gold">
+                    {l.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Contact column */}
           <div>
-            <h4 className="font-semibold mb-6">Contacto</h4>
-            <ul className="space-y-4">
+            <h3 className="font-display text-base font-semibold">Contacto</h3>
+            <ul className="mt-5 space-y-4 text-[15px] text-white/70">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#d4a853] flex-shrink-0 mt-0.5" />
-                <span className="text-white/70 text-sm">
-                  Av. Principal #123
-                  <br />
-                  Quito, Ecuador
+                <MapPin className="mt-0.5 size-[18px] shrink-0 text-gold" aria-hidden="true" />
+                <span>
+                  {contact.addressLine}, {contact.city}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#d4a853] flex-shrink-0" />
-                <a
-                  href="tel:+593999999999"
-                  className="text-white/70 hover:text-white text-sm"
-                >
-                  +593 99 999 9999
+                <Phone className="size-[18px] shrink-0 text-gold" aria-hidden="true" />
+                <a href={contact.phoneHref} className="hover:text-white">
+                  {contact.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[#d4a853] flex-shrink-0" />
-                <a
-                  href="mailto:info@oftalmohorus.com"
-                  className="text-white/70 hover:text-white text-sm"
-                >
-                  info@oftalmohorus.com
+                <Mail className="size-[18px] shrink-0 text-gold" aria-hidden="true" />
+                <a href={`mailto:${contact.email}`} className="hover:text-white">
+                  {contact.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-[#d4a853] flex-shrink-0 mt-0.5" />
-                <span className="text-white/70 text-sm">
-                  Lun - Vie: 8:00 - 18:00
+                <Clock className="mt-0.5 size-[18px] shrink-0 text-gold" aria-hidden="true" />
+                <span>
+                  {contact.hours[0]}
                   <br />
-                  Sáb: 8:00 - 13:00
+                  {contact.hours[1]} · Emergencias 24/7
                 </span>
               </li>
             </ul>
           </div>
         </div>
 
-        <Separator className="my-8 bg-white/10" />
-
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} OFTALMO HORUS Center. Todos los
-            derechos reservados.
-          </p>
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 rounded-2xl bg-white/[0.05] px-6 py-5 text-sm text-white/60 md:flex-row">
+          <p>© {new Date().getFullYear()} OFTALMO HORUS Center. Todos los derechos reservados.</p>
           <div className="flex gap-6">
-            {footerLinks.legal.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="text-white/50 hover:text-white/70 text-sm transition-colors"
-              >
-                {link.name}
+            {footerLinks.legal.map((l) => (
+              <a key={l.name} href={l.href} className="transition-colors hover:text-white">
+                {l.name}
               </a>
             ))}
           </div>

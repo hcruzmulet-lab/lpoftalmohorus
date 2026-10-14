@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Sora, Figtree } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "OFTALMO HORUS Center | Dra. Yelín Vento Rojas",
   description:
-    "Centro oftalmológico de excelencia en Ecuador. Cirugía de cataratas, corrección láser, glaucoma y oftalmología pediátrica con la Dra. Yelín Vento Rojas.",
+    "Centro oftalmológico en Quito, Ecuador. Cirugía de cataratas, corrección láser, glaucoma y oftalmología pediátrica con la Dra. Yelín Vento Rojas.",
   keywords: [
     "oftalmología",
     "cirugía de cataratas",
@@ -46,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${poppins.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${sora.variable} ${figtree.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

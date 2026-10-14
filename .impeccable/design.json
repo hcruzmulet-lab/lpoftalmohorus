@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:44.863758+00:00",
+  "title": "Design System: OFTALMO HORUS Center",
+  "extensions": {
+    "colorMeta": {
+      "horus": {
+        "role": "primary",
+        "displayName": "Horus Violet",
+        "canonical": "oklch(54.1% 0.247 293.0)",
+        "tonalRamp": [
+          "#110033",
+          "#310075",
+          "#5200b4",
+          "#6f25dc",
+          "#8e53ff",
+          "#b07aff",
+          "#cfaeff",
+          "#f1e1ff"
+        ]
+      },
+      "horus-deep": {
+        "role": "primary",
+        "displayName": "Deep Iris",
+        "canonical": "oklch(47.6% 0.240 289.9)",
+        "tonalRamp": [
+          "#0f0033",
+          "#2e0075",
+          "#4c00b4",
+          "#682ddc",
+          "#8758ff",
+          "#a87fff",
+          "#c9b1ff",
+          "#ede3ff"
+        ]
+      },
+      "horus-soft": {
+        "role": "primary",
+        "displayName": "Iris Soft",
+        "canonical": "oklch(93.9% 0.030 298.3)",
+        "tonalRamp": [
+          "#0c0a10",
+          "#26232f",
+          "#443f50",
+          "#635e70",
+          "#847f92",
+          "#a7a1b6",
+          "#cbc6d7",
+          "#efedf6"
+        ]
+      },
+      "horus-mist": {
+        "role": "neutral",
+        "displayName": "Horus Mist",
+        "canonical": "oklch(96.9% 0.012 301.3)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#262429",
+          "#434148",
+          "#626067",
+          "#838189",
+          "#a6a3ac",
+          "#cac8ce",
+          "#efeef2"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Horus Gold",
+        "canonical": "oklch(75.5% 0.115 81.9)",
+        "tonalRamp": [
+          "#150800",
+          "#3a1e00",
+          "#603900",
+          "#815900",
+          "#a57a1e",
+          "#c99d48",
+          "#e6c486",
+          "#ffecc9"
+        ]
+      },
+      "gold-ink": {
+        "role": "secondary",
+        "displayName": "Gold Ink",
+        "canonical": "oklch(52.9% 0.102 80.4)",
+        "tonalRamp": [
+          "#150800",
+          "#381f00",
+          "#5d3a00",
+          "#7f5a00",
+          "#a27b31",
+          "#c69e56",
+          "#e4c48e",
+          "#feecce"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Violet Night",
+        "canonical": "oklch(22.1% 0.059 294.5)",
+        "tonalRamp": [
+          "#0c0915",
+          "#262039",
+          "#443c5e",
+          "#635b80",
+          "#847ca3",
+          "#a79ec7",
+          "#cac4e4",
+          "#efecff"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Dusk Gray",
+        "canonical": "oklch(40.5% 0.054 295.4)",
+        "tonalRamp": [
+          "#0c0914",
+          "#272137",
+          "#443c5c",
+          "#635b7d",
+          "#847ca0",
+          "#a79fc4",
+          "#cbc4e2",
+          "#efecfd"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Lilac Line",
+        "canonical": "oklch(92.1% 0.021 301.1)",
+        "tonalRamp": [
+          "#0c0a0e",
+          "#26232c",
+          "#44404c",
+          "#635f6b",
+          "#84808d",
+          "#a7a2b0",
+          "#cbc7d2",
+          "#efedf4"
+        ]
+      },
+      "input-stroke": {
+        "role": "neutral",
+        "displayName": "Field Stroke",
+        "canonical": "oklch(87.6% 0.031 300.3)",
+        "tonalRamp": [
+          "#0c0a10",
+          "#27232f",
+          "#443e50",
+          "#645d71",
+          "#857e92",
+          "#a8a1b6",
+          "#cbc6d7",
+          "#f0edf6"
+        ]
+      },
+      "destructive": {
+        "role": "neutral",
+        "displayName": "Destructive",
+        "canonical": "oklch(0.577 0.245 27.325)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only, two lines, key phrase in Horus Violet."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section h2; 1.875rem on mobile, 2.5rem from md."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Proof numerals (15+, 24/7, 30 min, 4.9, 98%) above a Figtree caption; 1.875rem to 2.5rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and list-item headings, 1.125rem to 1.25rem."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "Paragraph under a section heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Card copy, testimonials, form text; 15px to 17px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Form labels, small buttons, captions (13px info bar). Sentence case."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 18px 40px -16px rgba(29,20,51,0.35)",
+        "purpose": "Cards that overlap other content: hero 24/7 and rating cards, specialist years badge."
+      },
+      {
+        "name": "header-lift",
+        "value": "0 6px 24px -12px rgba(29,20,51,0.18)",
+        "purpose": "Sticky header after 40px of scroll."
+      }
+    ],
+    "motion": [
+      {
+        "name": "rise",
+        "value": "rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; translateY(20px) to none, stagger 90ms",
+        "purpose": "One-time entrance of hero copy blocks."
+      },
+      {
+        "name": "state-transition",
+        "value": "200ms (buttons, fields), 300ms (cards, nav underline)",
+        "purpose": "Hover color, border and 4px lift transitions."
+      },
+      {
+        "name": "iris-spin",
+        "value": "rotate 360deg over 140s linear infinite",
+        "purpose": "Iris fibers only."
+      },
+      {
+        "name": "iris-follow",
+        "value": "lerp 0.08 per frame, max 10 units, fine pointers only",
+        "purpose": "Iris drifts toward the cursor."
+      },
+      {
+        "name": "marquee",
+        "value": "translateX(-50%) over 50s linear infinite, pauses on hover/focus",
+        "purpose": "Testimonial carousel."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce disables rise, iris-spin, iris-follow, marquee and smooth scroll",
+        "purpose": "Accessibility invariant."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action color: Agendar cita and every main CTA.",
+      "html": "<button class=\"ds-btn-primary\">Agendar cita <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:10px;font:600 15px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;text-decoration:none;transition:background-color .2s,border-color .2s,transform .2s;background:var(--horus);color:#fff;border:0;} .ds-btn-primary:hover{background:var(--horus-deep);} .ds-btn-primary:active{transform:translateY(1px);} .ds-btn-primary:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action beside a primary, on white or mist.",
+      "html": "<button class=\"ds-btn-outline\">Nuestros servicios</button>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:10px;font:600 15px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;text-decoration:none;transition:background-color .2s,border-color .2s,transform .2s;background:#fff;color:var(--horus);border:1px solid rgba(124,58,237,.4);} .ds-btn-outline:hover{border-color:var(--horus);background:var(--horus-mist);} .ds-btn-outline:active{transform:translateY(1px);} .ds-btn-outline:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;}"
+    },
+    {
+      "name": "Light Button on Ink",
+      "kind": "button",
+      "refersTo": "button-small",
+      "description": "White button on Violet Night or violet bands; hovers to gold.",
+      "html": "<div class=\"ds-dark\"><button class=\"ds-btn-light\">Llamar ahora</button></div>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-dark{background:var(--ink);padding:24px;border-radius:18px;} .ds-btn-light{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:10px;font:600 15px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;text-decoration:none;transition:background-color .2s,border-color .2s,transform .2s;height:40px;padding:0 16px;font-size:14px;background:#fff;color:var(--ink);border:0;} .ds-btn-light:hover{background:var(--gold);} .ds-btn-light:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Appointment form field with label above and violet focus ring.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-label\">Nombre completo</span><input class=\"ds-input\" placeholder=\"Ej. María García\"></label>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-field{display:block;max-width:320px;} .ds-label{display:block;margin-bottom:8px;font:600 14px/1.25 Figtree,ui-sans-serif,sans-serif;color:var(--ink);} .ds-input{width:100%;height:48px;padding:0 16px;border:1px solid var(--input);border-radius:10px;background:#fff;font:400 15px Figtree,ui-sans-serif,sans-serif;color:var(--ink);caret-color:var(--horus);transition:border-color .2s,box-shadow .2s;box-sizing:border-box;} .ds-input::placeholder{color:rgba(75,67,99,.6);} .ds-input:focus{outline:none;border-color:var(--horus);box-shadow:0 0 0 3px rgba(124,58,237,.2);}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "White sticky nav: logo, links with scaling violet underline, small CTA.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-brand\">OFTALMO <b>HORUS</b></span><span class=\"ds-links\"><a href=\"#\" class=\"ds-link is-active\">Inicio</a><a href=\"#\" class=\"ds-link\">Servicios</a><a href=\"#\" class=\"ds-link\">Especialista</a></span><a href=\"#\" class=\"ds-nav-cta\">Agendar cita</a></nav>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;padding:0 24px;background:#fff;} .ds-brand{font:700 17px Sora,ui-sans-serif,sans-serif;letter-spacing:-.02em;color:var(--ink);} .ds-brand b{color:var(--horus);} .ds-links{display:flex;gap:4px;} .ds-link{position:relative;padding:8px 12px;font:500 15px Figtree,ui-sans-serif,sans-serif;color:var(--ink);text-decoration:none;transition:color .2s;} .ds-link::after{content:'';position:absolute;left:12px;right:12px;bottom:-2px;height:2px;border-radius:9999px;background:var(--horus);transform:scaleX(0);transform-origin:left;transition:transform .3s;} .ds-link:hover,.ds-link.is-active{color:var(--horus);} .ds-link.is-active::after{transform:scaleX(1);} .ds-link:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;} .ds-nav-cta{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;background:var(--horus);color:#fff;font:600 14px Figtree,ui-sans-serif,sans-serif;text-decoration:none;transition:background-color .2s;} .ds-nav-cta:hover{background:var(--horus-deep);}"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Bordered four-up service card with soft icon tile; lifts and fills on hover.",
+      "html": "<article class=\"ds-svc\"><span class=\"ds-tile\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg></span><h3>Cirugía de Cataratas</h3><p>Lentes intraoculares premium para restaurar tu visión de forma definitiva.</p><a href=\"#\">Agendar este servicio <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a></article>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-svc{display:flex;flex-direction:column;align-items:center;max-width:280px;padding:36px 28px 28px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;transition:border-color .3s,transform .3s;} .ds-svc:hover{transform:translateY(-4px);border-color:rgba(124,58,237,.5);} .ds-tile{display:grid;place-items:center;width:68px;height:68px;border-radius:18px;background:var(--horus-soft);color:var(--horus);transition:background-color .3s,color .3s;} .ds-svc:hover .ds-tile{background:var(--horus);color:#fff;} .ds-svc h3{margin:24px 0 0;font:600 18px/1.4 Sora,ui-sans-serif,sans-serif;letter-spacing:-.025em;color:var(--ink);} .ds-svc p{margin:12px 0 0;font:400 15px/1.625 Figtree,ui-sans-serif,sans-serif;color:var(--ink-soft);} .ds-svc a{margin-top:24px;display:inline-flex;align-items:center;gap:6px;font:600 15px Figtree,ui-sans-serif,sans-serif;color:var(--horus);text-decoration:none;} .ds-svc a svg{width:16px;height:16px;transition:transform .3s;} .ds-svc:hover a svg{transform:translateX(4px);} .ds-svc a:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;}"
+    },
+    {
+      "name": "Promo Card",
+      "kind": "card",
+      "refersTo": "promo-card",
+      "description": "Mist promo card from the row of four: title, figure, copy, action pinned bottom.",
+      "html": "<article class=\"ds-promo\"><h3>Valoración visual completa</h3><p class=\"ds-fig\">30 min</p><p class=\"ds-copy\">Agudeza visual, presión ocular y fondo de ojo en una sola visita.</p><a href=\"#\" class=\"ds-promo-btn\">Reservar valoración</a></article>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-promo{display:flex;flex-direction:column;min-height:260px;max-width:280px;padding:28px;border-radius:18px;background:var(--horus-mist);box-sizing:border-box;} .ds-promo h3{margin:0;font:600 20px/1.4 Sora,ui-sans-serif,sans-serif;letter-spacing:-.025em;color:var(--ink);} .ds-fig{margin:16px 0 0;font:700 40px/1 Sora,ui-sans-serif,sans-serif;letter-spacing:-.025em;color:var(--gold-ink);} .ds-copy{margin:12px 0 20px;font:400 14px/1.625 Figtree,ui-sans-serif,sans-serif;color:var(--ink-soft);} .ds-promo-btn{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;border:1px solid rgba(124,58,237,.4);background:#fff;color:var(--horus);font:600 14px Figtree,ui-sans-serif,sans-serif;text-decoration:none;transition:background-color .2s,border-color .2s;} .ds-promo-btn:hover{border-color:var(--horus);background:var(--horus-mist);} .ds-promo-btn:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;}"
+    },
+    {
+      "name": "Float Card 24/7",
+      "kind": "card",
+      "refersTo": "float-card",
+      "description": "Hero floating proof card; the only card that carries a shadow.",
+      "html": "<a href=\"#\" class=\"ds-float\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z\"/><path d=\"M21 16v2a4 4 0 0 1-4 4h-5\"/></svg><span class=\"ds-float-fig\">24/7</span><span class=\"ds-float-cap\">Emergencias oculares</span></a>",
+      "css": ":host{--horus:#7c3aed;--horus-deep:#6425d6;--horus-soft:#ede7fd;--horus-mist:#f6f3fc;--gold:#d4a853;--gold-ink:#8a6414;--ink:#1d1433;--ink-soft:#4b4363;--line:#e7e2f1;--input:#d9d2e8;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink);} .ds-float{display:flex;flex-direction:column;align-items:center;width:144px;padding:20px 16px;border-radius:18px;background:#fff;color:var(--horus);text-align:center;text-decoration:none;box-shadow:0 18px 40px -16px rgba(29,20,51,.35);transition:transform .3s;box-sizing:border-box;} .ds-float:hover{transform:translateY(-4px);} .ds-float:focus-visible{outline:2px solid #7c3aed;outline-offset:3px;} .ds-float-fig{margin-top:8px;font:700 30px/1.1 Sora,ui-sans-serif,sans-serif;color:var(--ink);} .ds-float-cap{margin-top:4px;font:400 13px/1.25 Figtree,ui-sans-serif,sans-serif;color:var(--ink-soft);}"
+    },
+    {
+      "name": "Iris",
+      "kind": "custom",
+      "refersTo": "iris",
+      "description": "Signature brand iris: violet disc, slow-rotating fibers, gold ring, deep pupil.",
+      "html": "<svg class=\"ds-iris\" viewBox=\"-12 -12 224 224\" aria-hidden=\"true\"><circle cx=\"100\" cy=\"100\" r=\"100\" fill=\"#7c3aed\"/><g class=\"ds-fibers\"><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(0 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(5 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(10 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(15 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(20 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(25 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(30 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(35 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(40 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(45 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(50 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(55 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(60 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(65 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(70 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(75 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(80 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(85 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(90 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(95 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(100 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(105 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(110 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(115 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(120 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(125 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(130 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(135 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(140 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(145 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(150 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(155 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(160 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(165 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(170 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(175 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(180 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(185 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(190 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(195 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(200 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(205 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(210 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(215 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(220 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(225 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(230 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(235 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(240 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(245 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(250 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(255 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(260 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(265 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(270 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(275 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(280 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(285 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(290 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(295 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(300 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(305 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(310 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(315 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(320 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(325 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(330 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(335 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(340 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"20\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(345 100 100)\"/><line x1=\"100\" y1=\"50\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.14\" stroke-width=\"0.8\" transform=\"rotate(350 100 100)\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"12\" stroke=\"#fff\" stroke-opacity=\"0.08\" stroke-width=\"0.8\" transform=\"rotate(355 100 100)\"/></g><circle cx=\"100\" cy=\"100\" r=\"44\" fill=\"#6425d6\"/><circle cx=\"100\" cy=\"100\" r=\"44\" fill=\"none\" stroke=\"#d4a853\" stroke-opacity=\"0.7\" stroke-width=\"1\"/><circle cx=\"100\" cy=\"100\" r=\"94\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"1.6\"/></svg>",
+      "css": ".ds-iris{width:240px;height:240px;display:block;} .ds-fibers{transform-origin:50% 50%;transform-box:fill-box;animation:ds-iris-spin 140s linear infinite;} @keyframes ds-iris-spin{to{transform:rotate(360deg);}} @media (prefers-reduced-motion:reduce){.ds-fibers{animation:none;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Iris",
+    "overview": "The brand is an eye. Everything in this system orbits a single object: a violet disc with fine radial fibers and a thin gold ring, the iris of Horus, set behind the real doctor in the hero. The rest of the page is a clean, luminous clinic: white and lavender surfaces, violet-night ink, generous air, bordered cards, and one confident violet for every action. It reads as a serious medical practice in Quito with a real specialist, not a wellness brand and not a tech startup.\n\nDensity is calm and reference-faithful: a thin info bar, a white sticky nav with one call to action, a split hero, centered section headings, card grids of four, and sections that alternate white, lavender mist and deep ink. Color is flat. Depth appears only on what floats (hero proof cards, the specialist badge, the scrolled header). Motion is slow and quiet: the iris fibers turn over 140 seconds, the iris drifts toward the cursor, content rises once on load.\n\nConfirmed rejections: the previous stock hero built on gradients and glass. No gradient fills, no glassmorphism, no decorative blur.",
+    "keyCharacteristics": [
+      "One violet (#7c3aed) for every action, focus ring, selection and form caret.",
+      "Gold is a ring and a number, never a surface: the iris ring, the 24/7 figure, rating stars, accents on ink.",
+      "Three surface tones in rotation: paper white, horus mist lavender, ink night.",
+      "Flat by default; soft violet-tinted shadow only under floating cards.",
+      "Sora for every heading and figure, Figtree for everything you read."
+    ],
+    "rules": [
+      {
+        "name": "The One Violet Rule",
+        "body": "Every interactive affordance is Horus Violet or sits on it. No second action color, no gradient between violet and anything.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold Thread Rule",
+        "body": "Gold is a ring, a star, a figure or an accent on ink. It never fills a card or section, and on light surfaces readable gold text uses Gold Ink (#8a6414), not Horus Gold.",
+        "section": "colors"
+      },
+      {
+        "name": "The Figure Rule",
+        "body": "Proof is shown as a Sora numeral above a short Figtree caption, never as a sentence. The numeral carries the color; the caption stays Dusk Gray.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only-What-Floats Rule",
+        "body": "A shadow means the element overlaps something. Grid cards, form panels and section bands stay flat; their hover is a 4px lift plus a border shift, not a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use Horus Violet (#7c3aed) for every button, link, focus ring and active state, with Deep Iris (#6425d6) as its only hover.",
+      "**Do** alternate section grounds between paper, Horus Mist (#f6f3fc) and Violet Night (#1d1433).",
+      "**Do** set every heading and proof figure in Sora with -0.025em tracking, and all reading text in Figtree.",
+      "**Do** use 18px radius for cards and media, 10px for controls.",
+      "**Do** reserve the Float shadow (0 18px 40px -16px rgba(29,20,51,0.35)) for elements that overlap other content.",
+      "**Do** honor prefers-reduced-motion: entrance rise, iris rotation and the testimonial marquee all stop."
+    ],
+    "donts": [
+      "**Don't** use gradient fills or glass/blur panels; the previous gradient-and-glass hero was rejected.",
+      "**Don't** fill a card or section with gold, or set Horus Gold (#d4a853) text on a light surface; use Gold Ink (#8a6414).",
+      "**Don't** introduce a second action color.",
+      "**Don't** put shadows on grid cards or flat panels; use border and tone.",
+      "**Don't** add uppercase tracked labels above headings; the centered violet bar is the only heading ornament."
+    ]
+  }
+}

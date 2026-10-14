@@ -1,120 +1,91 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Eye, Zap, Shield, Baby } from "lucide-react";
+import { ArrowRight, Eye, Zap, ShieldCheck, Baby } from "lucide-react";
+import { selectService, type ServiceId } from "./site";
 
-const services = [
+const items: {
+  id: ServiceId;
+  icon: typeof Eye;
+  title: string;
+  description: string;
+}[] = [
   {
+    id: "cataratas",
     icon: Eye,
     title: "Cirugía de Cataratas",
     description:
-      "Procedimientos de última generación con lentes intraoculares premium para restaurar tu visión de forma definitiva.",
+      "Lentes intraoculares premium para restaurar tu visión de forma definitiva.",
   },
   {
+    id: "laser",
     icon: Zap,
     title: "Corrección Láser",
     description:
-      "Libérate de los lentes con tecnología LASIK y PRK. Procedimientos seguros y resultados inmediatos.",
+      "LASIK y PRK para dejar los lentes. Procedimientos seguros con resultados inmediatos.",
   },
   {
-    icon: Shield,
+    id: "glaucoma",
+    icon: ShieldCheck,
     title: "Tratamiento de Glaucoma",
     description:
-      "Diagnóstico temprano y tratamiento integral del glaucoma para preservar tu visión a largo plazo.",
+      "Diagnóstico temprano y tratamiento integral para preservar tu visión a largo plazo.",
   },
   {
+    id: "pediatrica",
     icon: Baby,
     title: "Oftalmología Pediátrica",
     description:
-      "Cuidado especializado para los ojos de los más pequeños. Detección y tratamiento de problemas visuales infantiles.",
+      "Detección y tratamiento de problemas visuales en los más pequeños, con paciencia y cariño.",
   },
 ];
 
 export function Services() {
   return (
-    <section id="servicios" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-[#7c3aed] font-semibold mb-2">
-            Nuestros Servicios
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            Especialidades que Transforman Vidas
+    <section id="servicios" className="bg-white py-24 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-bold text-ink md:text-[2.5rem]">
+            Nuestros servicios
           </h2>
-          <p className="text-gray-500">
-            Ofrecemos una gama completa de servicios oftalmológicos con la más
-            avanzada tecnología y un equipo humano comprometido con tu bienestar
-            visual.
+          <span
+            aria-hidden="true"
+            className="mx-auto mt-4 block h-1 w-12 rounded-full bg-horus"
+          />
+          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+            Especialidades que transforman vidas, con la tecnología más avanzada
+            y un equipo comprometido con tu bienestar visual.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="group border border-gray-200 hover:border-[#7c3aed]/50 rounded-2xl shadow-none hover:shadow-lg transition-all duration-300"
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((s) => (
+            <li
+              key={s.id}
+              className="group flex flex-col items-center rounded-2xl border border-line bg-white px-7 pb-7 pt-9 text-center transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-horus/50"
             >
-              <CardContent className="p-8 text-center">
-                {/* Icon */}
-                <div className="mb-6">
-                  <service.icon className="w-14 h-14 mx-auto text-[#7c3aed] stroke-[1.5]" />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-black mb-4">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Additional info */}
-        <div className="mt-16 bg-gradient-to-r from-[#7c3aed]/5 to-[#d4a853]/5 rounded-3xl p-8 md:p-12 border border-[#7c3aed]">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-black">
-                ¿No estás seguro qué servicio necesitas?
+              <span className="grid size-[68px] place-items-center rounded-2xl bg-horus-soft text-horus transition-colors duration-300 group-hover:bg-horus group-hover:text-white">
+                <s.icon className="size-8 stroke-[1.6]" aria-hidden="true" />
+              </span>
+              <h3 className="mt-6 font-display text-lg font-semibold text-ink">
+                {s.title}
               </h3>
-              <p className="text-gray-500 mb-6">
-                Agenda una valoración completa y nuestro equipo te orientará
-                hacia el tratamiento más adecuado para ti.
+              <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">
+                {s.description}
               </p>
-              <Button
-                size="lg"
-                className="bg-[#7c3aed] hover:bg-[#7c3aed]/90"
-                asChild
+              <a
+                href="#citas"
+                onClick={() => selectService(s.id)}
+                className="mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-horus"
               >
-                <a href="#citas">
-                  Solicitar Valoración
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-2xl p-6 shadow-md text-center">
-                <p className="text-3xl font-bold text-[#7c3aed]">24/7</p>
-                <p className="text-sm text-gray-500">
-                  Atención de emergencias
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-6 shadow-md text-center">
-                <p className="text-3xl font-bold text-[#7c3aed]">30 min</p>
-                <p className="text-sm text-gray-500">
-                  Valoración completa
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+                Agendar este servicio
+                <ArrowRight
+                  className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

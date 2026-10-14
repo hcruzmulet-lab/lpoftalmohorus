@@ -6,21 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-sora);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -44,137 +31,133 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  /* Custom brand colors - Morado Violeta + Dorado */
-  --color-horus-primary: #7c3aed;
-  --color-horus-primary-dark: #5b21b6;
-  --color-horus-primary-light: #a78bfa;
-  --color-horus-gold: #d4a853;
-  --color-horus-gold-light: #f5d78e;
+
+  /* Marca OFTALMO HORUS: violeta + dorado */
+  --color-horus: #7c3aed;
+  --color-horus-deep: #6425d6;
+  --color-horus-soft: #ede7fd;
+  --color-horus-mist: #f6f3fc;
+  --color-ink: #1d1433;
+  --color-ink-soft: #4b4363;
+  --color-gold: #d4a853;
+  --color-gold-ink: #8a6414;
+  --color-line: #e7e2f1;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.53 0.26 285);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0.01 85);
-  --secondary-foreground: oklch(0.35 0.1 85);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.75 0.15 85);
-  --accent-foreground: oklch(0.2 0 0);
+  --background: #ffffff;
+  --foreground: #1d1433;
+  --card: #ffffff;
+  --card-foreground: #1d1433;
+  --popover: #ffffff;
+  --popover-foreground: #1d1433;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f3fc;
+  --secondary-foreground: #1d1433;
+  --muted: #f6f3fc;
+  --muted-foreground: #4b4363;
+  --accent: #d4a853;
+  --accent-foreground: #1d1433;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.53 0.26 285);
-  --chart-1: oklch(0.53 0.26 285);
-  --chart-2: oklch(0.75 0.15 85);
-  --chart-3: oklch(0.6 0.118 184.704);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.45 0.2 260);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.55 0.2 260);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.75 0.15 85);
-  --accent-foreground: oklch(0.1 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.55 0.2 260);
-  --chart-1: oklch(0.55 0.2 260);
-  --chart-2: oklch(0.75 0.15 85);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.2 260);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --border: #e7e2f1;
+  --input: #d9d2e8;
+  --ring: #7c3aed;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    scrollbar-color: #c9b6f6 #f6f3fc;
+  }
   body {
     @apply bg-background text-foreground antialiased;
   }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: #7c3aed;
+    color: #ffffff;
+  }
+  :focus-visible {
+    outline: 2px solid #7c3aed;
+    outline-offset: 3px;
+  }
+  input,
+  select,
+  textarea {
+    caret-color: #7c3aed;
+    accent-color: #7c3aed;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.5); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Gradient backgrounds */
-.gradient-horus {
-  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #d4a853 100%);
-}
-
-.gradient-horus-subtle {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(212, 168, 83, 0.05) 100%);
-}
-
-/* Testimonials carousel animation */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+/* Iris del hero: las fibras giran despacio */
+@keyframes iris-spin {
+  to {
+    transform: rotate(360deg);
   }
-  100% {
+}
+
+.iris-fibers {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  animation: iris-spin 140s linear infinite;
+}
+
+/* Entrada: arranca visible, solo viaja si hay JS y movimiento permitido */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Carrusel de testimonios */
+@keyframes marquee {
+  to {
     transform: translateX(-50%);
   }
 }
 
-.animate-scroll {
-  animation: scroll 30s linear infinite;
+.animate-marquee {
+  animation: marquee 50s linear infinite;
 }
 
-.animate-scroll:hover {
+.animate-marquee:hover,
+.animate-marquee:focus-within {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iris-fibers,
+  .rise,
+  .animate-marquee {
+    animation: none;
+  }
 }

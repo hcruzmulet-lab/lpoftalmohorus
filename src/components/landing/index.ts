@@ -1,7 +1,7 @@
 export { Header } from "./Header";
 export { Hero } from "./Hero";
-export { Stats } from "./Stats";
 export { Services } from "./Services";
+export { Highlights } from "./Highlights";
 export { Technology } from "./Technology";
 export { Specialist } from "./Specialist";
 export { Appointment } from "./Appointment";

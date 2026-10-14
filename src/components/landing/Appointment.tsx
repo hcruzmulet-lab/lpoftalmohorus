@@ -1,182 +1,263 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import {
+  btn,
+  contact,
+  services,
+  SELECT_SERVICE_EVENT,
+  type ServiceId,
+} from "./site";
+
+type FormState = {
+  name: string;
+  phone: string;
+  email: string;
+  date: string;
+  service: ServiceId | "";
+};
+
+const fieldClass =
+  "h-12 w-full rounded-[10px] border border-input bg-white px-4 text-[15px] text-ink placeholder:text-ink-soft/60 transition-colors focus:border-horus focus:outline-none focus:ring-3 focus:ring-horus/20 aria-[invalid=true]:border-destructive";
+
+function formatDate(iso: string) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("es-EC", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+}
 
 export function Appointment() {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
-    email: "",
     phone: "",
+    email: "",
     date: "",
     service: "",
   });
+  const [showErrors, setShowErrors] = useState(false);
+
+  useEffect(() => {
+    const onSelect = (e: Event) => {
+      const id = (e as CustomEvent<ServiceId>).detail;
+      setForm((f) => ({ ...f, service: id }));
+    };
+    window.addEventListener(SELECT_SERVICE_EVENT, onSelect);
+    return () => window.removeEventListener(SELECT_SERVICE_EVENT, onSelect);
+  }, []);
+
+  const update = (key: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const serviceName = services.find((s) => s.id === form.service)?.name;
+
+  const message = useMemo(() => {
+    const lines = [
+      `Hola, soy ${form.name.trim() || "[tu nombre]"}. Quisiera agendar una cita`,
+      serviceName ? `para ${serviceName}` : "de valoración",
+      form.date ? `el ${formatDate(form.date)}.` : "en la fecha más próxima disponible.",
+    ];
+    const contactLine = [form.phone.trim(), form.email.trim()].filter(Boolean).join(" · ");
+    return `${lines.join(" ")}${contactLine ? `\nMi contacto: ${contactLine}` : ""}`;
+  }, [form, serviceName]);
+
+  const nameMissing = form.name.trim() === "";
+  const phoneMissing = form.phone.trim() === "";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (nameMissing || phoneMissing) {
+      setShowErrors(true);
+      return;
+    }
+    const url = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  const today = new Date().toISOString().split("T")[0];
+
   return (
-    <section id="citas" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Form */}
-          <div>
-            <Badge
-              variant="secondary"
-              className="bg-[#7c3aed]/10 text-[#7c3aed] border-[#7c3aed]/20 mb-4"
-            >
-              Agenda tu Cita
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transforma tu <span className="text-[#7c3aed]">Mirada</span> Hoy
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Completa el formulario y nuestro equipo se pondrá en contacto
-              contigo para confirmar tu cita en las próximas 24 horas.
-            </p>
+    <section id="citas" className="bg-horus-mist py-24 md:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 md:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div>
+          <h2 className="font-display text-3xl font-bold text-ink md:text-[2.5rem]">
+            Agenda tu cita
+          </h2>
+          <p className="mt-4 max-w-lg text-lg leading-relaxed text-ink-soft">
+            Completa tus datos y envíalos por WhatsApp. Nuestro equipo confirma
+            tu cita en menos de 24 horas.
+          </p>
 
-            <Card className="border-0 shadow-xl">
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nombre Completo</Label>
-                    <Input
-                      id="name"
-                      placeholder="Ingresa tu nombre completo"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="h-12"
-                    />
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Correo Electrónico</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="tu@email.com"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="h-12"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Teléfono</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="+593 99 999 9999"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="h-12"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="date">Fecha Preferida</Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        value={formData.date}
-                        onChange={(e) =>
-                          setFormData({ ...formData, date: e.target.value })
-                        }
-                        className="h-12"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Servicio de Interés</Label>
-                      <select
-                        id="service"
-                        value={formData.service}
-                        onChange={(e) =>
-                          setFormData({ ...formData, service: e.target.value })
-                        }
-                        className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        <option value="">Selecciona un servicio</option>
-                        <option value="valoracion">Valoración General</option>
-                        <option value="cataratas">Cirugía de Cataratas</option>
-                        <option value="laser">Corrección Láser</option>
-                        <option value="glaucoma">Tratamiento Glaucoma</option>
-                        <option value="pediatrica">
-                          Oftalmología Pediátrica
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-[#7c3aed] hover:bg-[#7c3aed]/90 h-14 text-lg"
-                  >
-                    Solicitar Cita
-                  </Button>
-
-                  <p className="text-xs text-center text-muted-foreground">
-                    Al enviar este formulario, aceptas nuestra política de
-                    privacidad. Tus datos están seguros con nosotros.
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className="mt-9 rounded-2xl bg-white p-6 sm:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <label htmlFor="name" className="mb-2 block text-sm font-semibold text-ink">
+                  Nombre completo
+                </label>
+                <input
+                  id="name"
+                  autoComplete="name"
+                  placeholder="Ej. María García"
+                  value={form.name}
+                  onChange={update("name")}
+                  aria-invalid={showErrors && nameMissing}
+                  aria-describedby={showErrors && nameMissing ? "name-error" : undefined}
+                  className={fieldClass}
+                />
+                {showErrors && nameMissing && (
+                  <p id="name-error" className="mt-1.5 text-sm text-destructive">
+                    Escribe tu nombre para saber a quién atender.
                   </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+                )}
+              </div>
 
-          {/* Right - Map with floating contact card */}
-          <div className="relative h-full min-h-[600px]">
-            {/* Map Container */}
-            <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7975!2d-78.4678!3d-0.1807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTAnNTAuNSJTIDc4wrAyOCcwNC4xIlc!5e0!3m2!1ses!2sec!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: "600px" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[30%]"
-              />
+              <div>
+                <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-ink">
+                  Teléfono
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="+593 99 999 9999"
+                  value={form.phone}
+                  onChange={update("phone")}
+                  aria-invalid={showErrors && phoneMissing}
+                  aria-describedby={showErrors && phoneMissing ? "phone-error" : undefined}
+                  className={fieldClass}
+                />
+                {showErrors && phoneMissing && (
+                  <p id="phone-error" className="mt-1.5 text-sm text-destructive">
+                    Necesitamos un teléfono para confirmar tu cita.
+                  </p>
+                )}
+              </div>
 
-              {/* Floating Contact Card */}
-              <div className="absolute bottom-4 left-4 right-4 flex justify-center">
-                <Card className="border border-[#7c3aed] shadow-2xl bg-white/70 backdrop-blur-xl max-w-lg">
-                  <CardContent className="px-3 py-0.5">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-[#7c3aed]" />
-                        <p className="font-medium text-xs">+593 99 999 9999</p>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Mail className="w-3.5 h-3.5 text-[#7c3aed]" />
-                        <p className="font-medium text-xs">info@oftalmohorus.com</p>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-[#7c3aed]" />
-                        <p className="font-medium text-xs">Quito, Ecuador</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div>
+                <label htmlFor="email" className="mb-2 block text-sm font-semibold text-ink">
+                  Correo <span className="font-normal text-ink-soft">(opcional)</span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="tu@email.com"
+                  value={form.email}
+                  onChange={update("email")}
+                  className={fieldClass}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="service" className="mb-2 block text-sm font-semibold text-ink">
+                  Servicio
+                </label>
+                <select
+                  id="service"
+                  value={form.service}
+                  onChange={update("service")}
+                  className={fieldClass}
+                >
+                  <option value="">Selecciona un servicio</option>
+                  {services.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="date" className="mb-2 block text-sm font-semibold text-ink">
+                  Fecha preferida
+                </label>
+                <input
+                  id="date"
+                  type="date"
+                  min={today}
+                  value={form.date}
+                  onChange={update("date")}
+                  className={fieldClass}
+                />
               </div>
             </div>
+
+            <div className="mt-7 rounded-xl bg-horus-mist p-4">
+              <p className="text-[13px] font-semibold text-ink-soft">
+                Así llegará tu mensaje
+              </p>
+              <p
+                aria-live="polite"
+                className="mt-1.5 whitespace-pre-line text-[15px] leading-relaxed text-ink"
+              >
+                {message}
+              </p>
+            </div>
+
+            <button type="submit" className={`${btn.primary} mt-6 h-14 w-full text-base`}>
+              <Send className="size-[18px]" aria-hidden="true" />
+              Enviar por WhatsApp
+            </button>
+            <p className="mt-4 text-center text-[13px] text-ink-soft">
+              Tus datos solo se usan para coordinar tu cita.
+            </p>
+          </form>
+        </div>
+
+        {/* Mapa y contacto */}
+        <div className="flex flex-col gap-5">
+          <div className="relative min-h-[360px] flex-1 overflow-hidden rounded-2xl bg-white">
+            <iframe
+              title="Ubicación de OFTALMO HORUS Center en Quito"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7975!2d-78.4678!3d-0.1807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTAnNTAuNSJTIDc4wrAyOCcwNC4xIlc!5e0!3m2!1ses!2sec!4v1234567890"
+              className="absolute inset-0 size-full border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
+          <ul className="grid gap-5 rounded-2xl bg-white p-6 sm:grid-cols-2">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 size-5 shrink-0 text-horus" aria-hidden="true" />
+              <span className="text-[15px] text-ink">
+                {contact.addressLine}
+                <br />
+                <span className="text-ink-soft">{contact.city}</span>
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 size-5 shrink-0 text-horus" aria-hidden="true" />
+              <span className="text-[15px] text-ink">
+                {contact.hours[0]}
+                <br />
+                <span className="text-ink-soft">{contact.hours[1]}</span>
+              </span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="size-5 shrink-0 text-horus" aria-hidden="true" />
+              <a href={contact.phoneHref} className="text-[15px] text-ink hover:text-horus">
+                {contact.phoneDisplay}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="size-5 shrink-0 text-horus" aria-hidden="true" />
+              <a
+                href={`mailto:${contact.email}`}
+                className="break-all text-[15px] text-ink hover:text-horus"
+              >
+                {contact.email}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
