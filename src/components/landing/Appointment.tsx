@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import {
   btn,
   contact,
@@ -45,6 +45,12 @@ export function Appointment() {
   const [sending, setSending] = useState(false);
   // Guardia síncrona: el estado no se actualiza entre dos clics seguidos.
   const submitting = useRef(false);
+  const [sentLink, setSentLink] = useState("");
+  const doneHeading = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (sentLink) doneHeading.current?.focus();
+  }, [sentLink]);
 
   useEffect(() => {
     const onSelect = (e: Event) => {
@@ -80,15 +86,25 @@ export function Appointment() {
     });
     if (!result.ok) {
       setErrors(result.errors);
+      const first = ["name", "phone", "email"].find((key) => result.errors[key]);
+      if (first) document.getElementById(first)?.focus();
       return;
     }
     setErrors({});
     submitting.current = true;
-    const win = window.open(whatsappUrl(message), "_blank");
+    const link = whatsappUrl(message);
+    const win = window.open(link, "_blank");
     if (win) win.opener = null;
     setSending(true);
     await submitLead(result.lead);
     setSending(false);
+    // Queda bloqueado hasta que el paciente pida enviar otra solicitud.
+    setSentLink(link);
+  };
+
+  const resetForm = () => {
+    setSentLink("");
+    setForm({ name: "", phone: "", email: "", date: "", service: "" });
     submitting.current = false;
   };
 
@@ -106,6 +122,24 @@ export function Appointment() {
             tu cita en menos de 24 horas.
           </p>
 
+          {sentLink ? (
+            <div className="mt-9 rounded-2xl bg-white p-6 sm:p-8" role="status">
+              <CheckCircle2 className="size-10 text-horus" aria-hidden="true" />
+              <p ref={doneHeading} tabIndex={-1} className="mt-4 font-display text-2xl font-bold text-ink focus:outline-none">
+                Envía el mensaje en WhatsApp para confirmar
+              </p>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+                Si la conversación no se abrió, tócala aquí. Te respondemos en menos de 24 horas.
+              </p>
+              <a href={sentLink} target="_blank" rel="noopener noreferrer" className={`${btn.primary} mt-6 w-full`}>
+                <MessageCircle className="size-[18px]" aria-hidden="true" />
+                Abrir WhatsApp
+              </a>
+              <button type="button" onClick={resetForm} className="mt-4 w-full text-center text-[15px] font-semibold text-horus hover:text-horus-deep">
+                Enviar otra solicitud
+              </button>
+            </div>
+          ) : (
           <form
             onSubmit={handleSubmit}
             noValidate
@@ -212,7 +246,7 @@ export function Appointment() {
             </div>
 
             <div className="mt-7 rounded-xl bg-horus-mist p-4">
-              <p className="text-[13px] font-semibold text-ink-soft">
+              <p className="text-sm font-semibold text-ink-soft">
                 Así llegará tu mensaje
               </p>
               <p
@@ -227,10 +261,11 @@ export function Appointment() {
               <Send className="size-[18px]" aria-hidden="true" />
               {sending ? "Enviando…" : "Enviar por WhatsApp"}
             </button>
-            <p className="mt-4 text-center text-[13px] text-ink-soft">
+            <p className="mt-4 text-center text-sm text-ink-soft">
               Tus datos solo se usan para coordinar tu cita.
             </p>
           </form>
+          )}
         </div>
 
         {/* Mapa y contacto */}

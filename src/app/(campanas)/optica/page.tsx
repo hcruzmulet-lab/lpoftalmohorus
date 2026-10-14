@@ -19,10 +19,16 @@ export const metadata: Metadata = {
 };
 
 // Confirmar con la óptica los tipos de lunas que vende.
-const offer = [
+const offer: {
+  icon: typeof Eye;
+  interest: string;
+  title: string;
+  text: string;
+  chips?: string[];
+}[] = [
   { icon: Eye, interest: "examen", title: "Examen visual", text: "Medimos tu vista con equipos de diagnóstico y te entregamos tu receta." },
   { icon: Glasses, interest: "lentes-receta", title: "Monturas", text: "Elige la montura que va contigo, con asesoría para tu rostro y tu receta." },
-  { icon: Layers, interest: "lentes-receta", title: "Lunas para cada necesidad", text: "Antirreflejo, filtro de luz azul, fotocromáticas y progresivas." },
+  { icon: Layers, interest: "lentes-receta", title: "Lunas para cada necesidad", text: "Elige el tratamiento según tu receta y tu día a día.", chips: ["Antirreflejo", "Filtro de luz azul", "Fotocromáticas", "Progresivas"] },
 ];
 
 const steps = [
@@ -81,7 +87,17 @@ export default function OpticaPage() {
                   <o.icon className="size-6" aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-display text-xl font-semibold text-ink">{o.title}</h3>
-                <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">{o.text}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{o.text}</p>
+                {o.chips && (
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {o.chips.map((chip) => (
+                      <li key={chip} className="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-ink">
+                        {chip}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <span className="flex-1" aria-hidden="true" />
                 <InterestButton
                   campaign="optica"
                   interest={o.interest}
@@ -100,9 +116,9 @@ export default function OpticaPage() {
       <section className="bg-ink py-24 text-white md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <h2 className="font-display text-3xl font-bold md:text-[2.5rem]">Tus lentes en tres pasos</h2>
-          <ol className="mt-12 grid gap-5 md:grid-cols-3">
+          <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0">
             {steps.map((s) => (
-              <li key={s.title} className="rounded-2xl bg-white/[0.06] p-7">
+              <li key={s.title} className="border-t-2 border-gold/70 pt-6 md:pr-10">
                 <h3 className="font-display text-xl font-semibold text-gold">{s.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-white/80">{s.text}</p>
               </li>
@@ -113,15 +129,15 @@ export default function OpticaPage() {
 
       {/* Cierre */}
       <section className="bg-white py-24 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 md:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <div>
-            <h2 className="font-display text-3xl font-bold text-ink md:text-[2.5rem]">¿Hace cuánto no te mides la vista?</h2>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
-              Si ves borroso, te cansas al leer o tus lentes ya no te sirven,
-              es momento de un examen.
-            </p>
+        <div className="mx-auto max-w-2xl px-4 md:px-6">
+          <h2 className="font-display text-3xl font-bold text-ink md:text-[2.5rem]">¿Hace cuánto no te mides la vista?</h2>
+          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+            Si ves borroso, te cansas al leer o tus lentes ya no te sirven,
+            es momento de un examen.
+          </p>
+          <div className="mt-10">
+            <LeadForm campaign="optica" surface="mist" />
           </div>
-          <LeadForm campaign="optica" />
         </div>
       </section>
     </>

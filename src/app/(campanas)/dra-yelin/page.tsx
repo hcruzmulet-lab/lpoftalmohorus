@@ -42,12 +42,20 @@ export default function DraYelinPage() {
                 <CalendarCheck className="size-[18px]" aria-hidden="true" />
                 Agendar consulta
               </a>
-              {drYelinSocial.map((s) => (
-                <a key={s.network} href={s.url} target="_blank" rel="noopener noreferrer" className={btn.outline}>
-                  {s.network}
-                  <ArrowUpRight className="size-4" aria-hidden="true" />
-                </a>
-              ))}
+              <div className="grid grid-cols-3 gap-3 sm:flex">
+                {drYelinSocial.map((s) => (
+                  <a
+                    key={s.network}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-12 items-center justify-center gap-1.5 rounded-[10px] bg-ink px-4 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-horus-deep active:translate-y-px"
+                  >
+                    {s.network}
+                    <ArrowUpRight className="hidden size-4 sm:block" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -147,9 +155,12 @@ export default function DraYelinPage() {
             <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
               Déjanos tus datos y te escribimos por WhatsApp para coordinar el día y la hora.
             </p>
+            <div className="relative mt-10 hidden aspect-[4/3] overflow-hidden rounded-2xl lg:block">
+              <Image src="/dr1.jpeg" alt="La Dra. Vento Rojas trabajando con el microscopio quirúrgico" fill sizes="520px" className="object-cover" />
+            </div>
           </div>
           <div id="formulario" className="scroll-mt-24">
-            <LeadForm campaign="dra-yelin" />
+            <LeadForm campaign="dra-yelin" surface="mist" />
           </div>
         </div>
       </section>

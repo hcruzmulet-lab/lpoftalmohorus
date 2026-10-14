@@ -102,9 +102,9 @@ export default function CirugiasPage() {
       <section className="bg-ink py-24 text-white md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <h2 className="font-display text-3xl font-bold md:text-[2.5rem]">Así es el camino a tu cirugía</h2>
-          <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             {steps.map((step) => (
-              <li key={step.title} className="rounded-2xl bg-white/[0.06] p-7">
+              <li key={step.title} className="border-t-2 border-gold/70 pt-6 lg:pr-10">
                 <h3 className="font-display text-xl font-semibold text-gold">{step.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-white/80">{step.text}</p>
               </li>
@@ -165,7 +165,7 @@ export default function CirugiasPage() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image src="/dr1.jpeg" alt="La Dra. Vento Rojas trabajando con el microscopio quirúrgico" fill sizes="(min-width: 1024px) 600px, 100vw" className="object-cover" />
           </div>
-          <LeadForm campaign="cirugias" title="Da el primer paso hoy" />
+          <LeadForm campaign="cirugias" title="Da el primer paso hoy" surface="mist" />
         </div>
       </section>
     </>

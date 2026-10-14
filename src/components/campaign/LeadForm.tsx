@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { MessageCircle, CheckCircle2 } from "lucide-react";
+import { MessageCircle, CheckCircle2, ChevronDown } from "lucide-react";
 import { campaigns, type CampaignId } from "@/lib/campaigns";
 import {
   buildWhatsAppMessage,
@@ -22,14 +22,19 @@ const fieldClass =
 
 type Status = "idle" | "sending" | "done";
 
+const FIELD_ORDER = ["name", "phone", "email", "interest"] as const;
+
 export function LeadForm({
   campaign,
   title,
   submitLabel = "Enviar por WhatsApp",
+  surface = "white",
 }: {
   campaign: CampaignId;
   title?: string;
   submitLabel?: string;
+  /** "mist" cuando el formulario va sobre una sección blanca. */
+  surface?: "white" | "mist";
 }) {
   const uid = useId();
   const config = campaigns[campaign];
@@ -45,6 +50,11 @@ export function LeadForm({
   const [waLink, setWaLink] = useState("");
   // Guardia síncrona: el estado no se actualiza entre dos clics seguidos.
   const submitting = useRef(false);
+  const doneHeading = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (status === "done") doneHeading.current?.focus();
+  }, [status]);
 
   useEffect(() => {
     const onSelect = (e: Event) => {
@@ -77,6 +87,8 @@ export function LeadForm({
     });
     if (!result.ok) {
       setErrors(result.errors);
+      const first = FIELD_ORDER.find((key) => result.errors[key]);
+      if (first) document.getElementById(`${uid}-${first}`)?.focus();
       return;
     }
     setErrors({});
@@ -106,11 +118,14 @@ export function LeadForm({
       </p>
     ) : null;
 
+  const card = surface === "mist" ? "bg-horus-mist" : "bg-white";
+  const inset = surface === "mist" ? "bg-white" : "bg-horus-mist";
+
   if (status === "done") {
     return (
-      <div className="rounded-2xl bg-white p-6 sm:p-8" role="status">
+      <div className={cn("rounded-2xl p-6 sm:p-8", card)} role="status">
         <CheckCircle2 className="size-10 text-horus" aria-hidden="true" />
-        <p className="mt-4 font-display text-2xl font-bold text-ink">
+        <p ref={doneHeading} tabIndex={-1} className="mt-4 font-display text-2xl font-bold text-ink focus:outline-none">
           Listo, te escribimos por WhatsApp
         </p>
         <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
@@ -125,7 +140,7 @@ export function LeadForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-2xl bg-white p-6 sm:p-8">
+    <form onSubmit={handleSubmit} noValidate className={cn("rounded-2xl p-6 sm:p-8", card)}>
       {title && <h2 className="font-display text-2xl font-bold text-ink">{title}</h2>}
 
       <div className={cn("grid gap-5 sm:grid-cols-2", title && "mt-6")}>
@@ -157,14 +172,17 @@ export function LeadForm({
           <label htmlFor={`${uid}-interest`} className="mb-2 block text-sm font-semibold text-ink">
             {config.interestLabel}
           </label>
-          <select {...field("interest")} value={values.interest} onChange={set("interest")} className={fieldClass}>
-            <option value="">Selecciona una opción</option>
-            {config.interests.map((i) => (
-              <option key={i.id} value={i.id}>
-                {i.name}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select {...field("interest")} value={values.interest} onChange={set("interest")} className={cn(fieldClass, "appearance-none pr-11")}>
+              <option value="">Selecciona una opción</option>
+              {config.interests.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-[18px] -translate-y-1/2 text-ink-soft" aria-hidden="true" />
+          </div>
           {errorText("interest")}
         </div>
 
@@ -175,7 +193,7 @@ export function LeadForm({
         </div>
       </div>
 
-      <div className="mt-6 rounded-xl bg-horus-mist p-4">
+      <div className={cn("mt-6 rounded-xl p-4", inset)}>
         <p className="text-sm font-semibold text-ink-soft">Así llegará tu mensaje</p>
         <p aria-live="polite" className="mt-1.5 whitespace-pre-line text-[15px] leading-relaxed text-ink">
           {preview}

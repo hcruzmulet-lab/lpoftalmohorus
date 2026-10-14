@@ -61,7 +61,7 @@ export const campaigns: Record<CampaignId, Campaign> = {
 };
 
 export function isCampaignId(value: unknown): value is CampaignId {
-  return typeof value === "string" && value in campaigns;
+  return typeof value === "string" && Object.hasOwn(campaigns, value);
 }
 
 // Vacío = el bloque de promoción no se muestra en /optica.

@@ -1,4 +1,4 @@
-import { interestName, validateLead } from "@/lib/leads";
+import { interestName, sheetSafe, validateLead } from "@/lib/leads";
 
 const WEBHOOK_TIMEOUT_MS = 8000;
 
@@ -33,13 +33,14 @@ export async function POST(request: Request) {
     secret,
     timestamp: new Date().toISOString(),
     campaign: lead.campaign,
-    name: lead.name,
+    name: sheetSafe(lead.name),
+    // El Apps Script guarda el teléfono siempre como texto.
     phone: lead.phone,
-    email: lead.email,
+    email: sheetSafe(lead.email),
     interest: interestName(lead.campaign, lead.interest),
-    page: lead.page,
-    referrer: lead.referrer,
-    ...lead.utm,
+    page: sheetSafe(lead.page),
+    referrer: sheetSafe(lead.referrer),
+    ...Object.fromEntries(Object.entries(lead.utm).map(([k, v]) => [k, sheetSafe(v)])),
   };
 
   try {

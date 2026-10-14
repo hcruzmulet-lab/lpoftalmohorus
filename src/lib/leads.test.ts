@@ -3,6 +3,7 @@ import {
   buildWhatsAppMessage,
   interestName,
   readUtm,
+  sheetSafe,
   validateLead,
   whatsappUrl,
 } from "./leads";
@@ -96,6 +97,15 @@ describe("validateLead", () => {
     if (!result.ok) expect(result.errors.campaign).toBeDefined();
   });
 
+  it.each(["constructor", "__proto__", "toString"])(
+    "rechaza la campaña heredada %s",
+    (campaign) => {
+      const result = validateLead({ ...valid, campaign });
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.errors.campaign).toBeDefined();
+    },
+  );
+
   it("no revienta con tipos raros", () => {
     expect(validateLead(null).ok).toBe(false);
     expect(validateLead("x").ok).toBe(false);
@@ -134,5 +144,16 @@ describe("mensaje de WhatsApp", () => {
 
   it("arma la URL de wa.me codificada", () => {
     expect(whatsappUrl("Hola mundo")).toBe("https://wa.me/593999999999?text=Hola%20mundo");
+  });
+});
+
+describe("sheetSafe", () => {
+  it.each(["=IMAGE(1)", "+593 99", "-1", "@foo"])("neutraliza la fórmula %s", (value) => {
+    expect(sheetSafe(value)).toBe(`'${value}`);
+  });
+
+  it("deja intacto el texto normal", () => {
+    expect(sheetSafe("María García")).toBe("María García");
+    expect(sheetSafe("")).toBe("");
   });
 });

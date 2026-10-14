@@ -117,6 +117,11 @@ export function buildWhatsAppMessage(
   return lines.join("\n");
 }
 
+// Google Sheets interpreta como fórmula todo valor que empiece con = + - @.
+export function sheetSafe(value: string): string {
+  return /^[=+\-@]/.test(value) ? `'${value}` : value;
+}
+
 export function whatsappUrl(message: string): string {
   return `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
 }
